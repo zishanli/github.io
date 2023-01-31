@@ -1,50 +1,23 @@
-<!DOCTYPE html>
-<html>
-  <!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
-  
-  <title>子杉的笔记</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-  
-  <meta name="keywords" content=博客,学习记录>
-  
-  
-    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=1.02">
-  
-  
-    <link rel="alternate" href="/atom.xml " title="子杉的笔记" type="application/atom+xml">
-  
+{% extends '_layout.swig' %}
+{% import '_macro/post.swig' as post_template %}
+{% import '_macro/sidebar.swig' as sidebar_template %}
 
-  
-<link rel="stylesheet" href="/css/style.css">
+{% block title %}{{ config.title }}{% if theme.index_with_subtitle and config.subtitle %} - {{config.subtitle }}{% endif %}{% endblock %}
 
-<meta name="generator" content="Hexo 5.4.2"></head>
-  <body>
-    <div class="container">
-      <div class="home">
-  <div class="info">
-    <a href="/" class="logo">子杉的笔记</a>
-    <div class="subtitle"></div>
-    <div class="sns">
-      
-          <a href="/archives">Blog</a>
-      
-          <a target="_blank" rel="noopener" href="https://github.com/zishanli">GitHub</a>
-      
-          <a target="_blank" rel="noopener" href="https://space.bilibili.com/389269650?spm_id_from=333.1007.0.0">BiliBili</a>
-      
-    </div>
-    <footer>
-  &copy; 2023
-  <span class="author">
-    李彬
-  </span>
-</footer>
-  </div>
-</div>
-    </div>
-  </body>
-</html>
+{% block page_class %}
+  {% if is_home() %}page-home{% endif -%}
+{% endblock %}
+
+{% block content %}
+  <section id="posts" class="posts-expand">
+    {% for post in page.posts %}
+      {{ post_template.render(post, true) }}
+    {% endfor %}
+  </section>
+
+  {% include '_partials/pagination.swig' %}
+{% endblock %}
+
+{% block sidebar %}
+  {{ sidebar_template.render(false) }}
+{% endblock %}
