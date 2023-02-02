@@ -5,22 +5,20 @@
   
 
   
-  <title>使用jsDelivr加速以及踩坑解决 | 子杉的笔记</title>
+  <title>微分几何笔记大纲 | 子杉的笔记</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="主要参考了这个教程jsDelivr+Github 实现免费cdn加速 问题在进行 【5.3 将需要cdn加速的资源上传到github仓库】 时，无法更新，查询可能是什么分支没有设置好，查询了 该链接 采用了 1git push origin master 然后就成功了 测试图片以及pdf采用如下地址应用资源 1https:&#x2F;&#x2F;fastly.jsdelivr.net&#x2F;gh&#x2F;你的用户名&#x2F;你的仓库名@发">
+  <meta name="description" content="主要用于记录学习曲线与曲面的微分几何过程中的笔记，一般会现在b站上发布笔记然后再放到这里汇总 主要参考书籍：(Dover Books on Mathematics) Manfredo P. do Carmo - Differential Geometry of Curves and Surfaces-Dover Publications (2016) 哔哩哔哩专栏文集链接微分几何笔记|1曲线">
 <meta property="og:type" content="article">
-<meta property="og:title" content="使用jsDelivr加速以及踩坑解决">
-<meta property="og:url" content="http://example.com/2023/02/01/%E4%BD%BF%E7%94%A8jsDelivr%E5%8A%A0%E9%80%9F/index.html">
+<meta property="og:title" content="微分几何笔记大纲">
+<meta property="og:url" content="http://example.com/2023/02/01/%E5%BE%AE%E5%88%86%E5%87%A0%E4%BD%95%E7%AC%94%E8%AE%B0%E5%A4%A7%E7%BA%B2/index.html">
 <meta property="og:site_name" content="子杉的笔记">
-<meta property="og:description" content="主要参考了这个教程jsDelivr+Github 实现免费cdn加速 问题在进行 【5.3 将需要cdn加速的资源上传到github仓库】 时，无法更新，查询可能是什么分支没有设置好，查询了 该链接 采用了 1git push origin master 然后就成功了 测试图片以及pdf采用如下地址应用资源 1https:&#x2F;&#x2F;fastly.jsdelivr.net&#x2F;gh&#x2F;你的用户名&#x2F;你的仓库名@发">
+<meta property="og:description" content="主要用于记录学习曲线与曲面的微分几何过程中的笔记，一般会现在b站上发布笔记然后再放到这里汇总 主要参考书籍：(Dover Books on Mathematics) Manfredo P. do Carmo - Differential Geometry of Curves and Surfaces-Dover Publications (2016) 哔哩哔哩专栏文集链接微分几何笔记|1曲线">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/zishanli/mycdn/image/%E5%9B%BE%E7%89%87/black.png">
-<meta property="article:published_time" content="2023-02-01T07:51:50.000Z">
-<meta property="article:modified_time" content="2023-02-01T09:00:40.733Z">
+<meta property="article:published_time" content="2023-02-01T14:57:43.000Z">
+<meta property="article:modified_time" content="2023-02-02T02:20:43.551Z">
 <meta property="article:author" content="李彬">
-<meta property="article:tag" content="jsDeliver">
+<meta property="article:tag" content="大纲 微分几何">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://fastly.jsdelivr.net/gh/zishanli/mycdn/image/%E5%9B%BE%E7%89%87/black.png">
   
   
     <link rel="icon" href="/favicon.png">
@@ -65,10 +63,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-使用jsDelivr加速" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-微分几何笔记大纲" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2023/02/01/%E4%BD%BF%E7%94%A8jsDelivr%E5%8A%A0%E9%80%9F/" class="article-date">
-  <time datetime="2023-02-01T07:51:50.000Z" itemprop="datePublished">2023-02-01</time>
+    <a href="/2023/02/01/%E5%BE%AE%E5%88%86%E5%87%A0%E4%BD%95%E7%AC%94%E8%AE%B0%E5%A4%A7%E7%BA%B2/" class="article-date">
+  <time datetime="2023-02-01T14:57:43.000Z" itemprop="datePublished">2023-02-01</time>
 </a>
     
   </div>
@@ -79,7 +77,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      使用jsDelivr加速以及踩坑解决
+      微分几何笔记大纲
     </h1>
   
 
@@ -87,32 +85,17 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>主要参考了这个教程<a target="_blank" rel="noopener" href="http://xiezhrspace.cn/archives/c14c115.html">jsDelivr+Github 实现免费cdn加速</a></p>
-<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>在进行 【5.3 将需要cdn加速的资源上传到github仓库】 时，无法更新，查询可能是什么分支没有设置好，查询了 <a target="_blank" rel="noopener" href="https://blog.csdn.net/wanglf1986/article/details/79398858">该链接</a> 采用了</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin master</span><br></pre></td></tr></table></figure>
-<p>然后就成功了</p>
-<h1 id="测试图片以及pdf"><a href="#测试图片以及pdf" class="headerlink" title="测试图片以及pdf"></a>测试图片以及pdf</h1><p>采用如下地址应用资源</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://fastly.jsdelivr.net/gh/你的用户名/你的仓库名@发布的版本号/文件路径</span><br></pre></td></tr></table></figure>
-<p>版本号不是必须的 可选</p>
-<h2 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h2><p><img src="https://fastly.jsdelivr.net/gh/zishanli/mycdn/image/%E5%9B%BE%E7%89%87/black.png" alt="black"></p>
-<h2 id="pdf"><a href="#pdf" class="headerlink" title="pdf"></a>pdf</h2><p>发现使用jsdeliver加速的文件不能超过20m，否则会显示显示File size exceeded the configured limit of 20 MB<br>pdf文件过大</p>
-
-
-	<div class="row">
-    <embed src="https://fastly.jsdelivr.net/gh/zishanli/mycdn/pdf/Project1.pdf" width="100%" height="550" type="application/pdf">
-	</div>
-
-
-
-<p>一开始成功了但是有时会蹦出直接下载pdf的问题 不太好用以后还是不用pdf了hhh</p>
+        <p>主要用于记录学习曲线与曲面的微分几何过程中的笔记，一般会现在b站上发布笔记然后再放到这里汇总</p>
+<p>主要参考书籍：<a target="_blank" rel="noopener" href="https://github.com/zishanli/mycdn/blob/main/pdf/(Dover%20Books%20on%20Mathematics)%20Manfredo%20P.%20do%20Carmo%20-%20Differential%20Geometry%20of%20Curves%20and%20Surfaces-Dover%20Publications%20(2016).pdf">(Dover Books on Mathematics) Manfredo P. do Carmo - Differential Geometry of Curves and Surfaces-Dover Publications (2016)</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/read/readlist/rl670070?spm_id_from=333.999.0.0">哔哩哔哩专栏文集链接</a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv21557635?spm_id_from=333.999.0.0">微分几何笔记|1曲线</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/02/01/%E4%BD%BF%E7%94%A8jsDelivr%E5%8A%A0%E9%80%9F/" data-id="cldmh1qq40001uktmgguv3x2n" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/02/01/%E5%BE%AE%E5%88%86%E5%87%A0%E4%BD%95%E7%AC%94%E8%AE%B0%E5%A4%A7%E7%BA%B2/" data-id="cldmh1qqa0005uktmf5wd4k5e" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jsDeliver/" rel="tag">jsDeliver</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%A4%A7%E7%BA%B2-%E5%BE%AE%E5%88%86%E5%87%A0%E4%BD%95/" rel="tag">大纲 微分几何</a></li></ul>
 
     </footer>
   </div>
@@ -120,19 +103,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2023/02/01/%E5%BE%AE%E5%88%86%E5%87%A0%E4%BD%95%E7%AC%94%E8%AE%B0%E5%A4%A7%E7%BA%B2/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          微分几何笔记大纲
-        
-      </div>
-    </a>
   
-  
-    <a href="/2023/01/31/%E6%9C%AC%E5%9C%B0%E5%92%8C%E4%BA%91%E7%AB%AF%E6%98%BE%E7%A4%BA%E5%9B%BE%E7%89%87%E5%92%8Cpdf/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2023/02/01/%E4%BD%BF%E7%94%A8jsDelivr%E5%8A%A0%E9%80%9F/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">测试本地和云端上传图片和pdf</div>
+      <div class="article-nav-title">使用jsDelivr加速以及踩坑解决</div>
     </a>
   
 </nav>
