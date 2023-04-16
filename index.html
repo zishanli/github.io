@@ -74,7 +74,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2023/04/14/%E5%A6%82%E4%BD%95%E5%9C%A8Qt%E4%B8%AD%E5%AF%BC%E5%85%A5nolpt%E5%BA%93/">如何在Qt中导入nolpt库（windows环境）</a>
+      <a class="article-title" href="/2023/04/14/%E5%A6%82%E4%BD%95%E5%9C%A8Qt%E4%B8%AD%E5%AF%BC%E5%85%A5nolpt%E5%BA%93/">如何在Qt中导入nlopt库（windows环境）</a>
     </h1>
   
 
@@ -82,28 +82,33 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>谨以此文来记录一个小白花了一天时间的心路历程hhh，深感在windows下环境不好配置。<br>最近得到师兄的一个在Windows下用qmake写的qt程序，我需要在里面添加一些功能。首先是由于Qt版本不对出现了一大堆bug，因为qt在第六版有了重大的升级，很多类改变了。所以最后通过卸载重装我的qt版本到5.14得到解决。(感谢陆师兄的建议，要不然我会折腾死)。<br>然后我就需要在里面装一个非线性优化库Nolpt。以下是具体心路历程hhh。<br>整体教程参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/dsaaf21/article/details/115209552">NLopt的windows环境下安装</a>，但是每一步都会遇到不少的问题hhh，我们从第一步开始。</p>
-<h1 id="c-c-环境配置"><a href="#c-c-环境配置" class="headerlink" title="c/c++环境配置"></a>c/c++环境配置</h1><p>教程言：【需要使用到的工具有cmake和MinGW，具体安装教程请自行搜索，网上有很多】<br>好吧那我们开始，之前下载过cmake比较熟悉，直接在网上搜索camke重新下回来安装。然后对nolpt进行cmake发现编译器没有，那就意味着我要再下一个编译器（奇怪的是在终端gcc -v是能看到我的编译器的，但是是一个什么strawberry。。这是电脑什么时候背着我种的草莓？而且电脑上其他vs c++编译器也还是有的，为什么用不了。。）。总之就再下一个吧，MinGW比较轻便，那就是你了！</p>
-<h2 id="MinGW编译器的安装"><a href="#MinGW编译器的安装" class="headerlink" title="MinGW编译器的安装"></a>MinGW编译器的安装</h2><p>1.踩坑：不要直接下载他的安装器进行安装，当时就是看着这个教程<a target="_blank" rel="noopener" href="http://c.biancheng.net/view/8077.html">MinGW下载和安装教程</a>进行安装的，然后cmake在conifgue时就一直报错缺少一个什么dll文件，找寻未果直接放弃。<br>2.可用方法：找到了教程<a target="_blank" rel="noopener" href="https://blog.csdn.net/jjxcsdn/article/details/123058745">下载安装MinGW-w64详细步骤（c/c++的编译器gcc的windows版，win10真实可用）</a>按照这个一步一步来就可以了</p>
-<h1 id="下载并编译Nolptr库"><a href="#下载并编译Nolptr库" class="headerlink" title="下载并编译Nolptr库"></a>下载并编译Nolptr库</h1><p>首先按照教程下载所需的Nolpt安装包，下载解压之后进行cmake。</p>
+        <p>谨以此文来记录一个小白花了一天时间的心路历程hhh，深感在windows下环境不好配置。（4.16补充，花了三天，之前高兴的太早了）<br>最近得到师兄的一个在Windows下用qmake写的qt程序，我需要在里面添加一些功能。首先是由于Qt版本不对出现了一大堆bug，因为qt在第六版有了重大的升级，很多类改变了。所以最后通过卸载重装我的qt版本到5.14得到解决。(感谢陆师兄的建议，要不然我会折腾死)。<br>然后我就需要在里面装一个非线性优化库Nolpt。以下是具体心路历程hhh。<br>整体教程参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/dsaaf21/article/details/115209552">NLopt的windows环境下安装</a>，但是每一步都会遇到不少的问题hhh，我们从第一步开始。</p>
+<h1 id="1-c-c-环境配置"><a href="#1-c-c-环境配置" class="headerlink" title="1 c/c++环境配置"></a>1 c/c++环境配置</h1><p>教程言：【需要使用到的工具有cmake和MinGW，具体安装教程请自行搜索，网上有很多】<br>好吧那我们开始，之前下载过cmake比较熟悉，直接在网上搜索camke重新下回来安装。然后对nolpt进行cmake发现编译器没有，那就意味着我要再下一个编译器（奇怪的是在终端gcc -v是能看到我的编译器的，但是是一个什么strawberry。。这是电脑什么时候背着我种的草莓？而且电脑上其他vs c++编译器也还是有的，为什么用不了。。）。总之就再下一个吧，MinGW比较轻便，那就是你了！</p>
+<h2 id="MinGW编译器的安装（4-16日补充，应该直接用qt的编译器，见补充）"><a href="#MinGW编译器的安装（4-16日补充，应该直接用qt的编译器，见补充）" class="headerlink" title="MinGW编译器的安装（4.16日补充，应该直接用qt的编译器，见补充）"></a>MinGW编译器的安装（4.16日补充，应该直接用qt的编译器，见补充）</h2><p>1.踩坑：不要直接下载他的安装器进行安装，当时就是看着这个教程<a target="_blank" rel="noopener" href="http://c.biancheng.net/view/8077.html">MinGW下载和安装教程</a>进行安装的，然后cmake在conifgue时就一直报错缺少一个什么dll文件，找寻未果直接放弃。<br>2.可用方法：找到了教程<a target="_blank" rel="noopener" href="https://blog.csdn.net/jjxcsdn/article/details/123058745">下载安装MinGW-w64详细步骤（c/c++的编译器gcc的windows版，win10真实可用）</a>按照这个一步一步来就可以了</p>
+<h1 id="2-下载并编译Nolptr库"><a href="#2-下载并编译Nolptr库" class="headerlink" title="2 下载并编译Nolptr库"></a>2 下载并编译Nolptr库</h1><p>首先按照教程下载所需的Nolpt安装包，下载解压之后进行cmake。</p>
 <h2 id="在windows环境下使用cmake"><a href="#在windows环境下使用cmake" class="headerlink" title="在windows环境下使用cmake"></a>在windows环境下使用cmake</h2><p>在linux下cmake直接在终端中使用make、cmake命令行即可完成构建，但是在windows中，还是较为麻烦，所以我直接用的是Cmake-GUI，试图可视化的进行cmake操作。<br>1.在configue时，设置如下：<br><img src="/2023/04/14/%E5%A6%82%E4%BD%95%E5%9C%A8Qt%E4%B8%AD%E5%AF%BC%E5%85%A5nolpt%E5%BA%93/1.jpg" alt="cmake1"><br>之后弹出的窗口选择上面刚刚下载的MinGW的编译器位置：<br><img src="/2023/04/14/%E5%A6%82%E4%BD%95%E5%9C%A8Qt%E4%B8%AD%E5%AF%BC%E5%85%A5nolpt%E5%BA%93/2.jpg" alt="cmake2"><br>然后就正常了。<br>2.然后Generate，很高兴这次他没有出错。<br>3.不过注意此时并没有直接安装了Nolpt，cmake生成的是一个makefiles的可执行文件。这个文件是让你安装Nolpt库的程序。<br>需要在你build的文件夹里在终端输入mimgw32-make。<br>4，成功之后需要管理员身份打开cmd，重新进入到build文件夹下，输入mingw32-make install,可以看到，默认安装到C盘Program Files(x86)文件夹下。（关于如何在终端进入到build文件夹下，参考这个教程<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_41990278/article/details/105249697">【windows终端路径跳转】windows终端cd不了其他文件夹解决方法</a>）<br>到此，Noplt库已经安装完成啦！距离调用就差临门一脚了。</p>
-<h1 id="在Qmake中正确调用生成的Nolpt库"><a href="#在Qmake中正确调用生成的Nolpt库" class="headerlink" title="在Qmake中正确调用生成的Nolpt库"></a>在Qmake中正确调用生成的Nolpt库</h1><p>因为师兄此程序是qmake编写的而不是cmake，所以需要在qt的pro文件里实现对库的调用声明。<br>在此处，我最后通过询问了chat-GPT完成了任务：</p>
+<h1 id="3-在Qmake中正确调用生成的Nolpt库"><a href="#3-在Qmake中正确调用生成的Nolpt库" class="headerlink" title="3 在Qmake中正确调用生成的Nolpt库"></a>3 在Qmake中正确调用生成的Nolpt库</h1><p>因为师兄此程序是qmake编写的而不是cmake，所以需要在qt的pro文件里实现对库的调用声明。<br>在此处，我最后通过询问了chat-GPT完成了任务：</p>
 <h2 id="GPT说在-QMake-中使用外部库需要以下步骤："><a href="#GPT说在-QMake-中使用外部库需要以下步骤：" class="headerlink" title="GPT说在 QMake 中使用外部库需要以下步骤："></a>GPT说在 QMake 中使用外部库需要以下步骤：</h2><p>在 .pro 文件中使用 LIBS 变量添加库的链接器选项，使用 INCLUDEPATH 变量添加头文件搜索路径。<br>确保库文件位于系统库搜索路径中，或者在 LIBS 中使用完整的库文件路径。</p>
 <p>下面是一个简单的示例，展示了如何在 QMake 中使用 nlopt 库：<br>（在细节处已经过人工修改）</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># .pro 文件</span></span><br><span class="line"><span class="comment"># 添加头文件搜索路径</span></span><br><span class="line">INCLUDEPATH += D:/xxx/include <span class="comment">#这里直接指向.h文件</span></span><br><span class="line"><span class="comment"># 添加库链接器选项</span></span><br><span class="line">LIBS += -LD:/xxx -lliblopt <span class="comment">#这里指向动态链接库dll文件</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># .pro 文件</span></span><br><span class="line"><span class="comment"># 添加头文件搜索路径</span></span><br><span class="line">INCLUDEPATH += D:/xxx/include <span class="comment">#这里直接指向.h文件</span></span><br><span class="line"><span class="comment"># 添加库链接器选项</span></span><br><span class="line">LIBS += -LD:/xxx -lnlopt <span class="comment">#这里指向动态链接库dll文件</span></span><br></pre></td></tr></table></figure>
 <p>你可以根据自己的实际情况修改示例中的目录路径和文件名称。</p>
 <p>由于我想把库和项目放在一起，就将默认安装到C盘Program Files(x86)文件夹下的nolpt文件复制到了项目的include文件夹中，并且使用了如下代码调用：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># .pro 文件</span></span><br><span class="line">$ INCLUDEPATH += $<span class="variable">$PWD</span>/include/nlopt/include/</span><br><span class="line">$ LIBS += -L$<span class="variable">$PWD</span>/include/nlopt/bin -lliblopt</span><br></pre></td></tr></table></figure>
-<p>这里的$$PWD是项目的路径，最终完成了该库的调用。</p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>windows下安装个库是真的不好用，对比一下在上一篇博客中在linux下调用简直太复杂。<br>另外推荐一下学习nolpt库的博客<a target="_blank" rel="noopener" href="https://www.guyuehome.com/35109">NLopt–非线性优化–原理介绍及使用方法</a>;<a target="_blank" rel="noopener" href="https://www.guyuehome.com/35169">NLopt–非线性优化–算法使用及C++实例</a>。怕自己到时候在想不起来。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># .pro 文件</span></span><br><span class="line">$ INCLUDEPATH += $<span class="variable">$PWD</span>/include/nlopt/include/</span><br><span class="line">$ LIBS += -L$<span class="variable">$PWD</span>/include/nlopt/bin -lnlopt</span><br></pre></td></tr></table></figure>
+<p>这里的$$PWD是项目的路径，最终完成了该库的调用。（4/16日补充 其实还是没有完成调用，生成的动态链接库经过多次试验还是没有完成调用，最终完成的是静态库的调用，具体细节见补充）</p>
+<h1 id="4月16日补充"><a href="#4月16日补充" class="headerlink" title="4月16日补充"></a>4月16日补充</h1><p>在经过上述操作之后，在qt里还是无法正常运转，显示的是程序异常终止，搜索得知还是库的问题，最后通过改成编译静态库完成。其中注意事项如下：</p>
+<h2 id="1-库的编译器和qt的编译器要一致"><a href="#1-库的编译器和qt的编译器要一致" class="headerlink" title="1 库的编译器和qt的编译器要一致"></a>1 库的编译器和qt的编译器要一致</h2><p>库的编译器和qt的编译器不一致的时候会报出不兼容的问题。解决方法是，在使用cmake编译的时候，直接使用qt的编译器（在qt的目录下，tools的文件夹里，找到MinGW文件夹里的GCC和G++.exe文件进行编译）。</p>
+<h2 id="2-如何编译静态的库"><a href="#2-如何编译静态的库" class="headerlink" title="2 如何编译静态的库"></a>2 如何编译静态的库</h2><p>在cmake-GUI的configure之后，使用search功能，搜索share，我们可以看到在图中的这个BUILD_SHARED_LIBS选项上打勾了，这是代表生成动态库。而我们如果取消勾选，就可以生成静态库。<br><img src="/2023/04/14/%E5%A6%82%E4%BD%95%E5%9C%A8Qt%E4%B8%AD%E5%AF%BC%E5%85%A5nolpt%E5%BA%93/3.jpg" alt="cmake2"><br>生成的静态库，也是按照之前的方法在qt里面调用：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># .pro 文件</span></span><br><span class="line">$ INCLUDEPATH += $<span class="variable">$PWD</span>/include/nlopt/include/  <span class="comment">#头文件位置</span></span><br><span class="line">$ LIBS += -L$<span class="variable">$PWD</span>/include/nlopt/lib -lnlopt    <span class="comment">#.a文件位置</span></span><br></pre></td></tr></table></figure>
+<p>最后终于完成了一个库的调用。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>windows下安装个库是真的不好用，对比一下在上一篇博客中在linux下调用简直太复杂。动态链接库更是要命，最后还是推荐使用静态链接库。<br>另外推荐一下学习nolpt库的博客<a target="_blank" rel="noopener" href="https://www.guyuehome.com/35109">NLopt–非线性优化–原理介绍及使用方法</a>;<a target="_blank" rel="noopener" href="https://www.guyuehome.com/35169">NLopt–非线性优化–算法使用及C++实例</a>。怕自己到时候在想不起来。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/04/14/%E5%A6%82%E4%BD%95%E5%9C%A8Qt%E4%B8%AD%E5%AF%BC%E5%85%A5nolpt%E5%BA%93/" data-id="clgg0ni3r000450tmayvt36rv" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/04/14/%E5%A6%82%E4%BD%95%E5%9C%A8Qt%E4%B8%AD%E5%AF%BC%E5%85%A5nolpt%E5%BA%93/" data-id="clgj7yhfb000a0otm52y74k6x" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Windows-nolpt-qt-MinGW-Cmake/" rel="tag">Windows nolpt qt MinGW Cmake</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Windows-nlopt-qt-MinGW-Cmake/" rel="tag">Windows nlopt qt MinGW Cmake</a></li></ul>
 
     </footer>
   </div>
@@ -150,7 +155,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/02/16/%E8%87%AA%E5%AD%A6C/" data-id="clgg0ni3z000j50tmhkaj0uq7" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/02/16/%E8%87%AA%E5%AD%A6C/" data-id="clgj7yhgh000j0otm8ga3hxjj" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/QT-c-cmake-windows-linux/" rel="tag">QT c++ cmake windows linux</a></li></ul>
@@ -192,7 +197,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/02/01/%E5%BE%AE%E5%88%86%E5%87%A0%E4%BD%95%E7%AC%94%E8%AE%B0%E5%A4%A7%E7%BA%B2/" data-id="clgg0ni3t000650tmdt8wewf3" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/02/01/%E5%BE%AE%E5%88%86%E5%87%A0%E4%BD%95%E7%AC%94%E8%AE%B0%E5%A4%A7%E7%BA%B2/" data-id="clgj7yhgc000b0otmb4xc7wy0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%A4%A7%E7%BA%B2-%E5%BE%AE%E5%88%86%E5%87%A0%E4%BD%95/" rel="tag">大纲 微分几何</a></li></ul>
@@ -241,7 +246,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/02/01/%E4%BD%BF%E7%94%A8jsDelivr%E5%8A%A0%E9%80%9F/" data-id="clgg0ni3s000550tm7tn69sxd" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/02/01/%E4%BD%BF%E7%94%A8jsDelivr%E5%8A%A0%E9%80%9F/" data-id="clgj7yhe300040otm65fbdl5i" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jsDeliver/" rel="tag">jsDeliver</a></li></ul>
@@ -294,7 +299,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/01/31/%E6%9C%AC%E5%9C%B0%E5%92%8C%E4%BA%91%E7%AB%AF%E6%98%BE%E7%A4%BA%E5%9B%BE%E7%89%87%E5%92%8Cpdf/" data-id="clgg0ni3x000g50tm835o0x3f" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/01/31/%E6%9C%AC%E5%9C%B0%E5%92%8C%E4%BA%91%E7%AB%AF%E6%98%BE%E7%A4%BA%E5%9B%BE%E7%89%87%E5%92%8Cpdf/" data-id="clgj7yhgg000g0otm4zg19o0c" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9B%BE%E7%89%87-pdf/" rel="tag">图片 pdf</a></li></ul>
@@ -342,7 +347,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/01/31/%E4%BD%BF%E7%94%A8Hexo-pdf%E6%B5%8B%E8%AF%95pdf%E5%9C%A8Hexo%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/" data-id="clgg0ni3n000150tmg7mu7int" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/01/31/%E4%BD%BF%E7%94%A8Hexo-pdf%E6%B5%8B%E8%AF%95pdf%E5%9C%A8Hexo%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/" data-id="clgj7yhdz00010otmctb81e18" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li></ul>
@@ -390,7 +395,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/01/31/%E4%BD%BF%E7%94%A8Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8%E4%BB%A5%E5%8F%8A%E8%B8%A9%E5%9D%91%E8%A1%A5%E4%B8%81/" data-id="clgg0ni3p000250tm5t1m0g0n" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/01/31/%E4%BD%BF%E7%94%A8Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8%E4%BB%A5%E5%8F%8A%E8%B8%A9%E5%9D%91%E8%A1%A5%E4%B8%81/" data-id="clgj7yhe100020otmdgur1csw" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo%EF%BC%8Cvscode/" rel="tag">hexo，vscode</a></li></ul>
@@ -441,7 +446,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/01/30/hello-world/" data-id="clgg0ni2t000050tma4kfa3dn" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/01/30/hello-world/" data-id="clgj7yh7000000otm0gxj6k0w" class="article-share-link">Share</a>
       
       
     </footer>
@@ -464,7 +469,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/QT-c-cmake-windows-linux/" rel="tag">QT c++ cmake windows linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows-nolpt-qt-MinGW-Cmake/" rel="tag">Windows nolpt qt MinGW Cmake</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo%EF%BC%8Cvscode/" rel="tag">hexo，vscode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jsDeliver/" rel="tag">jsDeliver</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9B%BE%E7%89%87-pdf/" rel="tag">图片 pdf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%A7%E7%BA%B2-%E5%BE%AE%E5%88%86%E5%87%A0%E4%BD%95/" rel="tag">大纲 微分几何</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/QT-c-cmake-windows-linux/" rel="tag">QT c++ cmake windows linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows-nlopt-qt-MinGW-Cmake/" rel="tag">Windows nlopt qt MinGW Cmake</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo%EF%BC%8Cvscode/" rel="tag">hexo，vscode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jsDeliver/" rel="tag">jsDeliver</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9B%BE%E7%89%87-pdf/" rel="tag">图片 pdf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%A7%E7%BA%B2-%E5%BE%AE%E5%88%86%E5%87%A0%E4%BD%95/" rel="tag">大纲 微分几何</a></li></ul>
     </div>
   </div>
 
@@ -474,7 +479,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/QT-c-cmake-windows-linux/" style="font-size: 10px;">QT c++ cmake windows linux</a> <a href="/tags/Windows-nolpt-qt-MinGW-Cmake/" style="font-size: 10px;">Windows nolpt qt MinGW Cmake</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/hexo%EF%BC%8Cvscode/" style="font-size: 10px;">hexo，vscode</a> <a href="/tags/jsDeliver/" style="font-size: 10px;">jsDeliver</a> <a href="/tags/%E5%9B%BE%E7%89%87-pdf/" style="font-size: 10px;">图片 pdf</a> <a href="/tags/%E5%A4%A7%E7%BA%B2-%E5%BE%AE%E5%88%86%E5%87%A0%E4%BD%95/" style="font-size: 10px;">大纲 微分几何</a>
+      <a href="/tags/QT-c-cmake-windows-linux/" style="font-size: 10px;">QT c++ cmake windows linux</a> <a href="/tags/Windows-nlopt-qt-MinGW-Cmake/" style="font-size: 10px;">Windows nlopt qt MinGW Cmake</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/hexo%EF%BC%8Cvscode/" style="font-size: 10px;">hexo，vscode</a> <a href="/tags/jsDeliver/" style="font-size: 10px;">jsDeliver</a> <a href="/tags/%E5%9B%BE%E7%89%87-pdf/" style="font-size: 10px;">图片 pdf</a> <a href="/tags/%E5%A4%A7%E7%BA%B2-%E5%BE%AE%E5%88%86%E5%87%A0%E4%BD%95/" style="font-size: 10px;">大纲 微分几何</a>
     </div>
   </div>
 
@@ -496,7 +501,7 @@
       <ul>
         
           <li>
-            <a href="/2023/04/14/%E5%A6%82%E4%BD%95%E5%9C%A8Qt%E4%B8%AD%E5%AF%BC%E5%85%A5nolpt%E5%BA%93/">如何在Qt中导入nolpt库（windows环境）</a>
+            <a href="/2023/04/14/%E5%A6%82%E4%BD%95%E5%9C%A8Qt%E4%B8%AD%E5%AF%BC%E5%85%A5nolpt%E5%BA%93/">如何在Qt中导入nlopt库（windows环境）</a>
           </li>
         
           <li>
