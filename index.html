@@ -97,7 +97,7 @@
 <p>这里的$$PWD是项目的路径，最终完成了该库的调用。（4/16日补充 其实还是没有完成调用，生成的动态链接库经过多次试验还是没有完成调用，最终完成的是静态库的调用，具体细节见补充）</p>
 <h1 id="4月16日补充"><a href="#4月16日补充" class="headerlink" title="4月16日补充"></a>4月16日补充</h1><p>在经过上述操作之后，在qt里还是无法正常运转，显示的是程序异常终止，搜索得知还是库的问题，最后通过改成编译静态库完成。其中注意事项如下：</p>
 <h2 id="1-库的编译器和qt的编译器要一致"><a href="#1-库的编译器和qt的编译器要一致" class="headerlink" title="1 库的编译器和qt的编译器要一致"></a>1 库的编译器和qt的编译器要一致</h2><p>库的编译器和qt的编译器不一致的时候会报出不兼容的问题。解决方法是，在使用cmake编译的时候，直接使用qt的编译器（在qt的目录下，tools的文件夹里，找到MinGW文件夹里的GCC和G++.exe文件进行编译）。</p>
-<h2 id="2-如何编译静态的库"><a href="#2-如何编译静态的库" class="headerlink" title="2 如何编译静态的库"></a>2 如何编译静态的库</h2><p>在cmake-GUI的configure之后，使用search功能，搜索share，我们可以看到在图中的这个BUILD_SHARED_LIBS选项上打勾了，这是代表生成动态库。而我们如果取消勾选，就可以生成静态库。<br><img src="/2023/04/14/%E5%A6%82%E4%BD%95%E5%9C%A8Qt%E4%B8%AD%E5%AF%BC%E5%85%A5nolpt%E5%BA%93/3.jpg" alt="cmake2"><br>生成的静态库，也是按照之前的方法在qt里面调用：</p>
+<h2 id="2-如何编译静态的库"><a href="#2-如何编译静态的库" class="headerlink" title="2 如何编译静态的库"></a>2 如何编译静态的库</h2><p>在cmake-GUI的configure之后，使用search功能，搜索share，我们可以看到在图中的这个BUILD_SHARED_LIBS选项上打勾了，这是代表生成动态库。而我们如果取消勾选，就可以生成静态库。<br><img src="/2023/04/14/%E5%A6%82%E4%BD%95%E5%9C%A8Qt%E4%B8%AD%E5%AF%BC%E5%85%A5nolpt%E5%BA%93/3.jpg" alt="cmake3"><br>生成的静态库，也是按照之前的方法在qt里面调用：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># .pro 文件</span></span><br><span class="line">$ INCLUDEPATH += $<span class="variable">$PWD</span>/include/nlopt/include/  <span class="comment">#头文件位置</span></span><br><span class="line">$ LIBS += -L$<span class="variable">$PWD</span>/include/nlopt/lib -lnlopt    <span class="comment">#.a文件位置</span></span><br></pre></td></tr></table></figure>
 <p>最后终于完成了一个库的调用。</p>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>windows下安装个库是真的不好用，对比一下在上一篇博客中在linux下调用简直太复杂。动态链接库更是要命，最后还是推荐使用静态链接库。<br>另外推荐一下学习nolpt库的博客<a target="_blank" rel="noopener" href="https://www.guyuehome.com/35109">NLopt–非线性优化–原理介绍及使用方法</a>;<a target="_blank" rel="noopener" href="https://www.guyuehome.com/35169">NLopt–非线性优化–算法使用及C++实例</a>。怕自己到时候在想不起来。</p>
@@ -105,7 +105,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/04/14/%E5%A6%82%E4%BD%95%E5%9C%A8Qt%E4%B8%AD%E5%AF%BC%E5%85%A5nolpt%E5%BA%93/" data-id="clgj7yhfb000a0otm52y74k6x" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/04/14/%E5%A6%82%E4%BD%95%E5%9C%A8Qt%E4%B8%AD%E5%AF%BC%E5%85%A5nolpt%E5%BA%93/" data-id="clgj866ri000a8stm3qf7fa3g" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Windows-nlopt-qt-MinGW-Cmake/" rel="tag">Windows nlopt qt MinGW Cmake</a></li></ul>
@@ -155,7 +155,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/02/16/%E8%87%AA%E5%AD%A6C/" data-id="clgj7yhgh000j0otm8ga3hxjj" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/02/16/%E8%87%AA%E5%AD%A6C/" data-id="clgj866rm000j8stmb6re33j6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/QT-c-cmake-windows-linux/" rel="tag">QT c++ cmake windows linux</a></li></ul>
@@ -197,7 +197,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/02/01/%E5%BE%AE%E5%88%86%E5%87%A0%E4%BD%95%E7%AC%94%E8%AE%B0%E5%A4%A7%E7%BA%B2/" data-id="clgj7yhgc000b0otmb4xc7wy0" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/02/01/%E5%BE%AE%E5%88%86%E5%87%A0%E4%BD%95%E7%AC%94%E8%AE%B0%E5%A4%A7%E7%BA%B2/" data-id="clgj866rk000d8stmfg1jf1pt" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%A4%A7%E7%BA%B2-%E5%BE%AE%E5%88%86%E5%87%A0%E4%BD%95/" rel="tag">大纲 微分几何</a></li></ul>
@@ -246,7 +246,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/02/01/%E4%BD%BF%E7%94%A8jsDelivr%E5%8A%A0%E9%80%9F/" data-id="clgj7yhe300040otm65fbdl5i" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/02/01/%E4%BD%BF%E7%94%A8jsDelivr%E5%8A%A0%E9%80%9F/" data-id="clgj866rg00048stm9n2jgv9n" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jsDeliver/" rel="tag">jsDeliver</a></li></ul>
@@ -299,7 +299,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/01/31/%E6%9C%AC%E5%9C%B0%E5%92%8C%E4%BA%91%E7%AB%AF%E6%98%BE%E7%A4%BA%E5%9B%BE%E7%89%87%E5%92%8Cpdf/" data-id="clgj7yhgg000g0otm4zg19o0c" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/01/31/%E6%9C%AC%E5%9C%B0%E5%92%8C%E4%BA%91%E7%AB%AF%E6%98%BE%E7%A4%BA%E5%9B%BE%E7%89%87%E5%92%8Cpdf/" data-id="clgj866rj000b8stm864kd4hf" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9B%BE%E7%89%87-pdf/" rel="tag">图片 pdf</a></li></ul>
@@ -347,7 +347,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/01/31/%E4%BD%BF%E7%94%A8Hexo-pdf%E6%B5%8B%E8%AF%95pdf%E5%9C%A8Hexo%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/" data-id="clgj7yhdz00010otmctb81e18" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/01/31/%E4%BD%BF%E7%94%A8Hexo-pdf%E6%B5%8B%E8%AF%95pdf%E5%9C%A8Hexo%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/" data-id="clgj866re00028stmcd0p93d5" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li></ul>
@@ -395,7 +395,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/01/31/%E4%BD%BF%E7%94%A8Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8%E4%BB%A5%E5%8F%8A%E8%B8%A9%E5%9D%91%E8%A1%A5%E4%B8%81/" data-id="clgj7yhe100020otmdgur1csw" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/01/31/%E4%BD%BF%E7%94%A8Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8%E4%BB%A5%E5%8F%8A%E8%B8%A9%E5%9D%91%E8%A1%A5%E4%B8%81/" data-id="clgj866rc00018stm2bceh5mr" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo%EF%BC%8Cvscode/" rel="tag">hexo，vscode</a></li></ul>
@@ -446,7 +446,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/01/30/hello-world/" data-id="clgj7yh7000000otm0gxj6k0w" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/01/30/hello-world/" data-id="clgj866r700008stma7ay46w2" class="article-share-link">Share</a>
       
       
     </footer>
